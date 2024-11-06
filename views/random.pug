@@ -4,12 +4,11 @@ block scripts
   script(src="/games-list.js" defer)
 
 block append nav
-extends newjoke
 
 block layout-content
 
   main.items-container
-    each joke in jokesList
+    each joke in randomJoke
       article.item
         div.text
           h3 #{joke.setup}

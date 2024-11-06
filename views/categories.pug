@@ -1,0 +1,20 @@
+//- extends layout
+
+block scripts
+  script(src="/games-list.js" defer)
+
+block append nav
+
+block layout-content
+
+  main.items-container
+    each category in categories
+        article.cate
+            div.text
+                h3 #{category.name}
+    //- each joke in jokesList
+    //-   article.item
+    //-     div.text
+    //-       h3 #{joke.setup}
+    //-       p #{joke.delivery}
+          
