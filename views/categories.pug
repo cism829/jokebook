@@ -1,4 +1,4 @@
-//- extends layout
+extends layout
 
 block scripts
   script(src="/games-list.js" defer)
@@ -11,7 +11,9 @@ block layout-content
     each category in categories
         article.cate
             div.text
-                h3 #{category.name}
+            a(href="/jokebook/joke/" + category.name)
+              h3 #{category.name}
+              
     //- each joke in jokesList
     //-   article.item
     //-     div.text

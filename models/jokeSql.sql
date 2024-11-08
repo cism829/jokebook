@@ -1,5 +1,6 @@
-DROP TABLE if EXISTS categories; 
 DROP TABLE IF EXISTS jokes;
+DROP TABLE if EXISTS categories; 
+
 
 CREATE TABLE categories (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -7,8 +8,8 @@ CREATE TABLE categories (
 );
 
 CREATE TABLE jokes (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    setup VARCHAR(106) NOT NULL,
+	jokeId INTEGER PRIMARY KEY AUTOINCREMENT,
+	setup VARCHAR(106) NOT NULL,
     delivery VARCHAR(106) NOT NULL,
     category_id INTEGER,
     FOREIGN KEY (category_id) REFERENCES categories(id)

@@ -1,17 +1,37 @@
-//- extends layout
+extends layout
 
 block scripts
-  script(src="/games-list.js" defer)
+  script(src="/script.js" defer)
 
 block append nav
-extends newjoke
 
+block new joke  
+  button#new-joke-btn Add New Joke
+  div#form-popup
+    form#form-container(action="/jokebook/joke/new", method="POST")
+      h1 New Joke
+      input#id(type="text", placeholder="setup", name="setup")
+      input#name(type="text", placeholder="delivery", name="delivery")
+      
+      if title == "Funny jokes"
+        input#category(type="number", value="1", name="category_id", readonly=true)
+      else if title == "Lame jokes"
+        input#category(type="number", value="2", name="category_id", readonly=true)
+      else
+        input#category(type="number", placeholder="category_id", name="category_id")
+  
+      button#save-joke(type="submit") Save
+      button#cancel-btn(type="button") Close
+  if message
+    div#error-message= message
 block layout-content
 
-  main.items-container
+  main.jokes-container
     each joke in jokesList
-      article.item
-        div.text
-          h3 #{joke.setup}
-          p #{joke.delivery}
+        div.joke
+          h3.setup #{joke.setup}
+          button#show-joke Reveal punchline
+          p.delivery #{joke.delivery}
+
+
           

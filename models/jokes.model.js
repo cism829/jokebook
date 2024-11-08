@@ -2,6 +2,7 @@
 
 const db = require("./db-path");
 
+
 function getRandom() {
     let sql = "SELECT * FROM jokes ORDER BY RANDOM() LIMIT 1;";
     const joke = db.all(sql); 
@@ -15,32 +16,39 @@ function getAll() {
 }
 
 function getCate(){
-    let sql = "Select name FROM categories;";
+    let sql = "Select * FROM categories;";
     const data = db.all(sql);
     return data;
 }
 
-function getOneCate(cate){
-    if(cate == "funnyJoke"){
-        let sql = "Select * FROM jokes WHERE category_id = 1;";
-        const item = db.all(sql);
-        return item;
-    }
-    else if(cate == "lameJoke"){
-        let sql = "Select * FROM jokes WHERE category_id = 2;";
-        const item = db.all(sql);
-        return item;
-    }
-    else{
-        return "Entered parameter not Found !";
-    }
+function getOneCate(cate, limit) {
+  let sql;
+  let item;
+  
+  if (cate == "funnyJoke") {
+      sql = "SELECT * FROM jokes WHERE category_id = 1";
+  } 
+  else if (cate == "lameJoke") {
+      sql = "SELECT * FROM jokes WHERE category_id = 2";
+  } 
+  else {
+      return "Entered parameter not Found !";
+  }
 
+  
+  if (limit) {
+      sql += " LIMIT ?";
+      let params = [parseInt(limit)]; 
+      item = db.all(sql, ...params);  
+  } else {
+      item = db.all(sql);  
+  }
 
-    // let sql = "SELECT * FROM categories WHERE name =?;";
-    // const item = db.get(sql, cate);
+  return item;
 }
 
-function newJoke(params){
+
+function newJoke(params) {
     let sql = "INSERT INTO jokes " +
     "(setup, delivery, category_id) " +
     "VALUES(?, ?, ?); ";

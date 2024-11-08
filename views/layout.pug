@@ -1,4 +1,12 @@
 doctype html
+<!--
+  Name: Collin Rodgers
+  Date: 11.08.2024
+  CSC 372-01
+
+  This is the homepage for my csc372 homework 6 assignment
+  which is showing jokes and categories from a database, using pug and node express. 
+-->
 html(lang='en')
   head
     meta(charset="utf-8")
@@ -9,14 +17,21 @@ html(lang='en')
       script(src="/script.js" defer)
   body
     block nav
-      nav
-        ul
-          li
-            a(href="/jokes/all") All Games
-          li
-            a(href="#") Second Page
-          li
-            a(href="#") Third Page
+      nav.nav
+          p
+            a(href="/jokebook/all") All Jokes
+          p
+            a(href="/jokebook/categories") All Categories
+          p
+            a(href="/jokebook/joke/funnyJoke") Funny jokes
+          p
+            a(href="/jokebook/joke/lameJoke") Lame jokes
+
+          form#search-bar
+            input#S-input(type="text" name="search")
+            button#S-button(type="submit") Search
     h1 #{title}
     div#root
       block layout-content
+      
+    block new joke

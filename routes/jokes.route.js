@@ -20,11 +20,11 @@ router.get("/random", jokesController.getRandom);
 router.get("/categories", jokesController.getCate);
 
 
-//http://localhost:3000/jokebook/joke/:categories
-router.get("/joke/:categories", jokesController.getOneCate);
+//http://localhost:3000/jokebook/joke/:categories/:limit?
+router.get("/joke/:categories/:limit?", jokesController.getOneCate);
 
 
 //http://localhost:3000/jokebook/joke/new
-router.post("joke/new", jokesController.newJoke);
+router.post("/joke/new", jokesController.newJoke);
 
 module.exports = router;
