@@ -12,8 +12,8 @@ const { db_close } = require("./models/db-path");
 
 app.use(express.static(__dirname +"/public"));
 
-app.set('view engine', 'pug');
-app.set('views');
+app.set("view engine", "pug");
+app.set("views", __dirname + "/views");
 
 app.use("/jokebook", jokeRoutes);
 
