@@ -1,5 +1,3 @@
-
-
 "use strict";
 const model = require("../models/jokes.model");
 
