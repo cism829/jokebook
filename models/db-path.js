@@ -1,8 +1,8 @@
 "use strict";
 
+const path = require("path");
 const Database = require("better-sqlite3");
-const db = new Database("./models/joke-db.db", { fileMustExist: true });
-
+const db = new Database(path.resolve(__dirname, "joke-db.db"));
 function all(sql, ...params) {
   return db.prepare(sql).all(params);
 }
