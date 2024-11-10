@@ -101,28 +101,28 @@ function newJoke(req, res, next) {
   let delivery = req.body.delivery;
   let category_id = parseInt(req.body.category_id);
 
-  // Check if all required fields are provided
+  
   if (setup && delivery && category_id) {
     let params = [setup, delivery, category_id];
     try {
-      model.newJoke(params); // Assuming model.newJoke handles the insert to the database
-      // Redirect based on category_id
+      model.newJoke(params);
+      
       if (category_id == 1) {
         res.redirect("/jokebook/joke/funnyJoke");
       } else if (category_id == 2) {
         res.redirect("/jokebook/joke/lameJoke");
       } else {
-        res.redirect("/jokebook/joke"); // You can redirect to a fallback page if needed
+        res.redirect("/jokebook/joke"); 
       }
     } catch (err) {
       console.error("Error while creating joke: ", err.message);
-      next(err); // Pass error to the error handler
+      next(err); 
     }
   } else {
-    // Only pass the error message if validation fails
-    let jokesList = model.getRandom(); // Assuming this returns a list of random jokes
+    
+    let jokesList = model.getRandom(); 
     res.render("jokes", {
-      jokesList: jokesList, title: "Welcome to the Joke Page!", message: "Please provide valid inputs!" // Error message only if fields are missing
+      jokesList: jokesList, title: "Welcome to the Joke Page!", message: "Please provide valid inputs!" 
     });
   }
 }
